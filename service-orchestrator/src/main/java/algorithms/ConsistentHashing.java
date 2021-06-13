@@ -18,9 +18,9 @@ public class ConsistentHashing implements Router {
     private final int pointMultiplier;
 
     public ConsistentHashing(final Function<String, Long> hashFunction,
-                             final int pointMultiplier) throws IllegalAccessException {
+                             final int pointMultiplier) {
         if (pointMultiplier == 0) {
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
         this.pointMultiplier = pointMultiplier;
         this.hashFunction = hashFunction;
