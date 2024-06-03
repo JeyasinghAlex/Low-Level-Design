@@ -14,26 +14,26 @@ public class MetricMapper {
         Map<String, int[]> cpuUsageRanges = new HashMap<>();
         cpuUsageRanges.put("Good", new int[]{0, 60});
         cpuUsageRanges.put("Average", new int[]{61, 90});
-        cpuUsageRanges.put("Poor", new int[]{91, Integer.MAX_VALUE});
+        cpuUsageRanges.put("Poor", new int[]{91, 100});
         metricRance.put("CPU usage", cpuUsageRanges);
 
         // Device up time ranges
         Map<String, int[]> deviceUptimeRanges = new HashMap<>();
         deviceUptimeRanges.put("Good", new int[]{0, 3});
         deviceUptimeRanges.put("Average", new int[]{4, 6});
-        deviceUptimeRanges.put("Poor", new int[]{7, Integer.MAX_VALUE});
+        deviceUptimeRanges.put("Poor", new int[]{7, 100});
         metricRance.put("Device up time", deviceUptimeRanges);
 
         // WiFi receive rate ranges
         Map<String, int[]> wifiReceiveRateRanges = new HashMap<>();
-        wifiReceiveRateRanges.put("Good", new int[]{50, Integer.MAX_VALUE});
+        wifiReceiveRateRanges.put("Good", new int[]{50, 500});
         wifiReceiveRateRanges.put("Average", new int[]{10, 49});
         wifiReceiveRateRanges.put("Poor", new int[]{0, 9});
         metricRance.put("WiFi receive rate", wifiReceiveRateRanges);
 
         // CSAT ranges
         Map<String, int[]> csatRanges = new HashMap<>();
-        csatRanges.put("Good", new int[]{4, Integer.MAX_VALUE});
+        csatRanges.put("Good", new int[]{4, 5});
         csatRanges.put("Average", new int[]{2, 3});
         csatRanges.put("Poor", new int[]{0, 1});
         metricRance.put("CSAT", csatRanges);
@@ -42,7 +42,7 @@ public class MetricMapper {
         Map<String, int[]> responseTimeRanges = new HashMap<>();
         responseTimeRanges.put("Good", new int[]{0, 2});
         responseTimeRanges.put("Average", new int[]{3, 4});
-        responseTimeRanges.put("Poor", new int[]{4, Integer.MAX_VALUE});
+        responseTimeRanges.put("Poor", new int[]{4, 100});
         metricRance.put("Response time", responseTimeRanges);
 
         // Number of crashes ranges
@@ -112,15 +112,12 @@ public class MetricMapper {
     private static int[] temp;
 
     public static void main(String[] args) {
-        String metric = "CPU usage";
+        String metric = "Device up time";
 
-        for (int i = 0; i <= 600; ++i) {
+        for (int i = 150; i <= 150; ++i) {
             double mappedValue = mapValue(metric, i);
-            //System.out.println("return value:" + mappedValue);
             if (mappedValue < temp[0])
-                mappedValue = temp[0];
-            else if (mappedValue > temp[1])
-                mappedValue = temp[1];
+                continue;
 
             System.out.println("Value: " + i + " -> " + mappedValue);
         }
